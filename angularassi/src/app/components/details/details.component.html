@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center"> Registration Form</h1>
+    <form [formGroup]="registrationForm">
+        <div>        
+            <label>First Name : </label>
+        <input type="text"  formControlName="firstName" [class.is-invalid]="firstName.invalid && firstName.touched">
+       <div *ngIf="firstName.invalid && firstName.touched">
+          <small class="text-danger" *ngIf="firstName.errors?.required">enter First Name</small>
+          <small class="text-danger" *ngIf="firstName.errors?.minlength">at least 3 characters</small>  
+        </div>
+        </div><br>
+        <div>
+            <label>Last Name : </label>
+            <input type="text" [class.is-invalid]="lastName.invalid && lastName.touched" formControlName="lastName" >
+           <div *ngIf="lastName.invalid && lastName.touched">
+              <small class="text-danger" *ngIf="lastName.errors?.required">enter Last Name </small>
+              <small class="text-danger" *ngIf="lastName.errors?.minlength">atleast 3 characters</small>    
+        </div>
+        </div><br>
+
+        <div>
+            <label>Phone Number : </label>
+            <input type="text" [class.is-invalid]="contact.invalid && contact.touched" pattern = "^\d{10}$" formControlName="contact" >
+            <div *ngIf="contact.errors && (contact.touched)">
+                <small class="text-danger" *ngIf="contact.errors?.required">Phone number is required</small>
+                <small class ="text-danger" *ngIf = "contact.errors?.pattern">Phone number must be 10 digits</small>
+             </div>
+        </div><br>
+        <div>
+            <label>Date of Birth : </label>
+            <input type="date" [class.is-invalid]="dob.invalid && contact.touched" formControlName="dob" >
+            <div *ngIf="dob.invalid && dob.touched">
+               <small class="text-danger" *ngIf="dob.errors?.required">Date of is required</small>
+            </div>
+        </div><br>
+        <div>
+        <label>City : </label>
+        <input type="text" [class.is-invalid]="city.invalid && city.touched" formControlName="city" >
+       <div *ngIf="city.invalid && city.touched">
+          <small class="text-danger" *ngIf="city.errors?.required">Cityrequired</small>
+       </div>
+    </div><br>
+    <div>
+        <label>pin code:</label>
+        <input type="number" formControlName="pin" > 
+    </div>
+    <div><br>
+        <button style="color: blue;" [disabled]="!registrationForm.valid" type="submit" (click) = "onsubmit()">Submit</button> 
+    </div><br>
+   
+
+
+        </form>
+      
+        <table  *ngIf = "displaytable()" >
+            <b>Table</b>
+            <thead class = "text-center">
+                <tr  >
+                    <th (click) = "sorttable('firstname')" class = "table">First Name  </th>
+                    <th (click) = "sorttable('lastname')" class = "table">Last Name </th>
+                    <th (click) = "sorttable('contact')" class = "table">Phone Number </th>
+                    <th (click) = "sorttable('dob')" class = "table">DOB </th>
+                    <th (click) = "sorttable('city')" class = "table">City </th>
+                    <th (click) = "sorttable('pin')" class = "table">pin Code </th>
+                    
+                </tr>
+            </thead>
+            <tr *ngFor = "let i of users">
+                <td >{{i.firstname}}</td>
+                <td >{{i.lastname}}</td>
+                <td >{{i.contact}}</td>
+                <td >{{i.dob | customdob: "months day, year" }}</td>
+                <td >{{i.city}}</td>
+                <td >{{i.pin}}</td>
+                <td (click) = "delete(i.firstname)"> <button class="btn"> delete</button></td>
+                
+            
+            </tr>
+    
+        </table>
+    </div>
+        
+</body>
+</html>
