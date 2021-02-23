@@ -5,9 +5,9 @@ import { StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottemTabNavigator} from '@react-navigation/bottom-tabs';
-import {Upcoming} from './screen/upcoming';
-import {topRated} from './screen/popular';
-import {Popular} from './screen/toprated';
+import {Upcoming} from './disp/upcoming';
+import {topRated} from './disp/popular';
+import {Popular} from './disp/toprated';
 
 const upst = createStackNavigator();
 function Upcome(){
