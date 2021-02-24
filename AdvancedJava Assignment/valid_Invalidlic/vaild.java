@@ -52,6 +52,8 @@ public class vaild {
                        if(x==false){
                          ToFile(output,root,le1);
                        }
+                       else
+                       ToFile(ou2,root2,le1);
                     }
                 }
                 d2.getDocumentElement().normalize();
