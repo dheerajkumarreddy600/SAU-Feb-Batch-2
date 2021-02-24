@@ -1,4 +1,6 @@
 output
   
- My emulator is not working unable to exicute
+ My emulator is not working unable to execute
+  
+  and details.js need to be created 
  
