@@ -1,0 +1,1 @@
+select id,name,gender,phnumber , (select count(*) from sell s where s.salesid=e.id) from salesexec e 

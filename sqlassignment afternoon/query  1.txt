@@ -1,0 +1,7 @@
+select r.productcode,r.Pname,r.unitscounts,r.dop from(select DENSE_RANK () OVER (PARTITION BY b.dop ORDER BY sum(b.units) DESC) Rank,
+p.productcode,p.Pname,sum(b.units)unitscounts,cast(b.DOP as date)dop from Products p inner join Buys b on b.productcode=p.productcode 
+inner join has h on h.salexid=b.salesid
+
+
+where h.locid='1' and cast(b.DOP as date)between '2021-02-6' and '2021-02-13'
+group by  p.productcode,p.Pname,b.DOP)r where r.Rank=1
